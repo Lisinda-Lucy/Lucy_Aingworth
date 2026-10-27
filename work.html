@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work | Lucy Aingworth</title>
+  <meta name="description" content="Case studies across SEO, Social, and CRO. Client, industry, challenge, strategy, execution, results, learning, and context." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <!-- OG -->
+  <meta property="og:title" content="Work — Case Studies | Lucy Aingworth" />
+  <meta property="og:description" content="Selected case studies across SEO, Social, and CRO, outcomes and learnings." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-work.jpg" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand:{DEFAULT:'#0EA5E9',dark:'#0369A1',soft:'#E0F2FE'} },
+      boxShadow:{ soft:'0 10px 30px rgba(0,0,0,0.1)'}
+    } } }
+  </script>
+
+  <style>
+    /* Base */
+    body{
+      background:linear-gradient(180deg,#0F172A 0%,#1E293B 100%);
+      color:#E2E8F0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',sans-serif
+    }
+    h1,h2,h3,h4,h5,h6{color:#F8FAFC}
+    a{color:#E2E8F0} a:hover{color:#7DD3FC}
+    .card{background-color:#1E293B;border:1px solid #334155;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+    .meta{font-size:.75rem}
+
+    /* Sticky tabs helper (we set --stickyTop via JS) */
+    .tabs-sticky{ position: sticky; top: var(--stickyTop, 80px); z-index: 40; }
+
+    /* Keep headings from hiding under sticky header + tabs */
+    .section-group, .section-group h2 { scroll-margin-top: 140px; }
+
+    /* Tab button states */
+    .tab-btn[aria-selected="true"]{
+      background:#0EA5E9; color:#0B1220; border-color:#0EA5E9;
+    }
+    .tab-btn{
+      border:1px solid #334155;
+      background: #0B1220;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-slate-700 backdrop-blur bg-slate-900/60">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <!-- Left: Brand Name -->
+    <a href="index.html" class="text-slate-100 text-lg font-semibold tracking-wide hover:text-brand transition">
+      Lucy Aingworth
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex gap-6 text-slate-200 font-medium items-center" aria-label="Primary">
+      <a href="work.html" class="hover:text-brand">Work</a>
+      <a href="about.html" class="hover:text-brand">About</a>
+      <a href="contact.html" class="hover:text-brand">Contact</a>
+      <a href="resume.html" class="px-4 py-2 rounded bg-brand text-slate-900 font-medium hover:bg-brand-dark transition">
+        Resumé
+      </a>
+    </nav>
+
+    <!-- Mobile: Hamburger -->
+    <div class="md:hidden flex items-center">
+      <button id="mobileNavBtn"
+              class="inline-flex items-center justify-center p-2 rounded-md text-slate-200 hover:bg-slate-800/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
+              aria-controls="mobileNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <!-- Hamburger icon -->
+        <svg id="hamburgerIcon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <!-- Close icon (hidden by default) -->
+        <svg id="closeIcon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu (hidden on md+) -->
+  <nav id="mobileNav" class="md:hidden hidden border-t border-slate-700 bg-slate-900/95">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3">
+      <a href="work.html" class="py-2 px-3 rounded hover:bg-slate-800/50 text-slate-100 font-medium">Work</a>
+      <a href="about.html" class="py-2 px-3 rounded hover:bg-slate-800/50 text-slate-100 font-medium">About</a>
+      <a href="contact.html" class="py-2 px-3 rounded hover:bg-slate-800/50 text-slate-100 font-medium">Contact</a>
+      <a href="resume.html" class="mt-2 inline-block px-4 py-2 rounded bg-brand text-slate-900 font-medium hover:bg-brand-dark transition text-center">
+        Resumé
+      </a>
+    </div>
+  </nav>
+
+  <script>
+    (function() {
+      const btn = document.getElementById('mobileNavBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+
+      if (!btn || !mobileNav) return;
+
+      function setAria(open) {
+        btn.setAttribute('aria-expanded', String(open));
+      }
+
+      btn.addEventListener('click', function() {
+        const open = mobileNav.classList.toggle('hidden') === false;
+        // Toggle icons
+        hamburger.classList.toggle('hidden', open);
+        closeIcon.classList.toggle('hidden', !open);
+        setAria(open);
+      });
+
+      // Close menu when a mobile link is clicked (nice UX)
+      mobileNav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          if (!mobileNav.classList.contains('hidden')) {
+            mobileNav.classList.add('hidden');
+            hamburger.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+            setAria(false);
+          }
+        });
+      });
+
+      // Optional: close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileNav.classList.contains('hidden')) {
+          mobileNav.classList.add('hidden');
+          hamburger.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          setAria(false);
+        }
+      });
+    })();
+  </script>
+</header>
+
+  <!-- Hero -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-extrabold">Work</h1>
+      <p class="mt-3 text-slate-300 max-w-3xl">
+        A collection of SEO, CRO, and Paid Social projects spanning multiple industries and platforms. Each entry includes the client, industry, challenge, strategy, results, and key learnings, offering transparent wins and lessons across digital performance and growth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sticky Tabs -->
+  <div class="tabs-sticky bg-slate-900/60 backdrop-blur border-y border-slate-700">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-2">
+      <button class="tab-btn rounded-lg px-4 py-2 text-sm font-medium hover:bg-slate-800 transition" data-show="all" aria-selected="true">All</button>
+      <button class="tab-btn rounded-lg px-4 py-2 text-sm font-medium hover:bg-slate-800 transition" data-show="seo">SEO</button>
+      <button class="tab-btn rounded-lg px-4 py-2 text-sm font-medium hover:bg-slate-800 transition" data-show="social">Social</button>
+      <button class="tab-btn rounded-lg px-4 py-2 text-sm font-medium hover:bg-slate-800 transition" data-show="cro">CRO</button>
+    </div>
+  </div>
+
+  <!-- SEO -->
+  <section class="py-10 section-group" data-group="seo">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-brand">SEO</h2>
+      <h3 class="text-xl md:text-2xl font-bold mt-2">Search strategy and growth</h3>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <!-- 1 Learna LTD -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Learna Ltd</h3>
+          <p class="meta text-slate-400">Industry: Education, Online Medical</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Increase search visibility and qualified interest for niche medical programmes. Grow brand awareness and drive course sign-ups in a specialist audience of healthcare professionals.</p>
+            <p><strong>Strategy and Execution:</strong> Unified site architecture across awareness-to-enrolment journeys, mapped high-intent keywords, applied entity-led schema, on-page optimisation (titles, meta, alt, H1/H2), mobile speed improvements, XML sitemap and robots.txt updates, plus GA, GTM, CRM tracking and ongoing CTR/SERP reviews.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+18.06% total clicks</span>, <span class="text-brand">+21.31% impressions</span> in 6 months. Combined Learna and Diploma registrations increased <span class="text-brand">+27.82%</span> in the same period.</p>
+            <p><strong>Learning:</strong> Entity led IA and clean tracking compound across funnels in niche education.</p>
+            <p class="text-xs text-slate-400">Context: Learna operates the group site with flexible online delivery and a broad MSc and PGDip catalogue.</p>
+          </div>
+        </article>
+
+        <!-- 2 Diploma MSc -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Diploma MSc</h3>
+          <p class="meta text-slate-400">Industry: Education, Online Medical</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Improve specialist programme discovery and conversion for postgraduate clinicians. Focus on programme level visibility, clarity of awarding university, and proof of outcomes. IA issues were not the blocker here.</p>
+            <p><strong>Strategy and Execution:</strong> Clustered keywords by programme, enhanced pages with clear value props, structured data for Course and Organization, improved internal linking and FAQs, refined meta/titles for higher CTR, added trust signals and event tracking for key enquiry points.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+63.42% total clicks</span>, <span class="text-brand">+28.55% impressions</span> in 6 months. Combined Learna and Diploma registrations increased <span class="text-brand">+27.82%</span> in the same period.</p>
+            <p><strong>Learning:</strong> Programme level entity coverage and clear UX paths raise discovery and enquiry intent.</p>
+            <p class="text-xs text-slate-400">Context: Programme brand with university awarded PGCert, PGDip and MSc routes across specialties like Endocrinology.</p>
+          </div>
+        </article>
+
+        <!-- 3 Togather -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Togather</h3>
+          <p class="meta text-slate-400">Industry: Event Marketplace</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Duplicate PLP content, Core Web Vitals issues, and weak non-brand visibility across listings, suppliers, and venues.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword mapping, content differentiation by category, schema and internal linking, Core Web Vitals fixes for LCP and CLS, targeted content blocks, FAQs, Jira prioritised roadmap.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+51% non-brand clicks</span>, <span class="text-brand">+12% non-brand impressions</span>, <span class="text-brand">+94% clicks to listings/conversions</span> in about 6 months.</p>
+            <p><strong>Learning:</strong> Intent specific copy and Core Web Vitals hygiene scale marketplaces efficiently.</p>
+            <p class="text-xs text-slate-400">Context: Two sided marketplace with listings, suppliers, and venues requiring intent specific templates.</p>
+          </div>
+        </article>
+
+        <!-- 4 reBuy -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">reBuy</h3>
+          <p class="meta text-slate-400">Industry: eCommerce, Recommerce</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Compete against Backmarket, Refurbed, and Medimops, expand non-brand visibility across kaufen and verkaufen.</p>
+            <p><strong>Strategy and Execution:</strong> Competitor gap analysis, PDP and media content expansion, internal linking and structured data, backlink profile refinement, Sistrix and GSC monitoring.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+22.45% clicks</span>, <span class="text-brand">+7.21% impressions</span> year over year.</p>
+            <p><strong>Learning:</strong> Balance technical depth with content velocity to grow share in competitive SERPs.</p>
+            <p class="text-xs text-slate-400">Context: Large catalogue with buy and sell journeys across multiple device categories.</p>
+          </div>
+        </article>
+
+        <!-- 5 Inecto SEO -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Inecto, SEO</h3>
+          <p class="meta text-slate-400">Industry: Beauty, Haircare</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Boost brand and non-brand discovery while aligning content with lifestyle intent.</p>
+            <p><strong>Strategy and Execution:</strong> Technical audit, on page improvements, internal linking, content and competition landing pages, search aligned storytelling.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+85% organic traffic</span>, <span class="text-brand">+47% social traffic</span>.</p>
+            <p><strong>Learning:</strong> Benefits first content with sound technical hygiene drives consistent growth.</p>
+            <p class="text-xs text-slate-400">Context: Consumer brand with seasonal campaigns and competition mechanics.</p>
+          </div>
+        </article>
+
+        <!-- 6 Amakhosi -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Amakhosi Safari Lodge</h3>
+          <p class="meta text-slate-400">Industry: Hospitality, Travel</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Migration and organic growth in a seasonal niche.</p>
+            <p><strong>Strategy and Execution:</strong> Migration planning, redirects, technical fixes, content refresh, local intent mapping.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+71% traffic in 12 months</span>.</p>
+            <p><strong>Learning:</strong> Flawless migrations with strong local signals accelerate recovery and growth.</p>
+            <p class="text-xs text-slate-400">Context: Boutique lodge competing in regional and international search markets.</p>
+          </div>
+        </article>
+
+        <!-- 7 ASSA ABLOY -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">ASSA ABLOY</h3>
+          <p class="meta text-slate-400">Industry: B2B, Security, Hardware</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Multi region visibility and competitive product categories.</p>
+            <p><strong>Strategy and Execution:</strong> Technical SEO and regional IA, schema, enterprise content structure, authority building.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+35-50% organic growth</span>, about <span class="text-brand">+40% visibility</span> across regions.</p>
+            <p><strong>Learning:</strong> Region specific IA and schema create durable B2B gains.</p>
+            <p class="text-xs text-slate-400">Context: Enterprise catalogue with region specific compliance and terminology.</p>
+          </div>
+        </article>
+
+        <!-- 8 Dr Lucas -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Dr Lucas Orthodontics</h3>
+          <p class="meta text-slate-400">Industry: Healthcare</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Local SEO growth and lead intent capture.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword mapping, meta and internal links, copy and image updates, audits, GA and GSC tracking, redirects and sitemap XML.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+25% organic</span>, <span class="text-brand">+12% calls</span>, <span class="text-brand">+9% conversions</span>.</p>
+            <p><strong>Learning:</strong> Local trust signals and fast UX improve call driven conversion.</p>
+            <p class="text-xs text-slate-400">Context: Multi location orthodontic practice with call driven enquiries.</p>
+          </div>
+        </article>
+
+        <!-- 9 Mobile Store -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Mobile Store, Ignition Group</h3>
+          <p class="meta text-slate-400">Industry: Telecom, Deals Aggregator</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Provider fed deals on Umbraco created heavy manual updates and SEO gaps.</p>
+            <p><strong>Strategy and Execution:</strong> CMS migration to streamline ingestion, SEO templating, metadata automation.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+10% organic traffic</span> before handover.</p>
+            <p><strong>Learning:</strong> Operations friendly CMS and SEO templates reduce drift and lift traffic.</p>
+            <p class="text-xs text-slate-400">Context: High churn catalogue fed by third party providers.</p>
+          </div>
+        </article>
+
+        <!-- 10 One400 -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">One400</h3>
+          <p class="meta text-slate-400">Industry: Legal Tech, Agency</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Increase non brand legal services discovery.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword and meta updates, internal linking, audits, performance baselines, GA and GSC reporting.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+30% organic traffic</span>.</p>
+            <p><strong>Learning:</strong> Category page clarity multiplies long tail impact.</p>
+            <p class="text-xs text-slate-400">Context: Agency led productised services in a competitive legal niche.</p>
+          </div>
+        </article>
+
+        <!-- 11 Best Internet (SEO) -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Best Internet</h3>
+          <p class="meta text-slate-400">Industry: Telecom</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Rebrand and IA, UX overhaul for visibility and conversion.</p>
+            <p><strong>Strategy and Execution:</strong> Brand ID refresh, new site structure for UX and UI, SEO setup, creative alignment, launch management.</p>
+            <p><strong>Results:</strong> Relaunched successfully, post launch organic data not available.</p>
+            <p><strong>Learning:</strong> Pre and post baselines with 30, 60, 90 day check ins are essential.</p>
+            <p class="text-xs text-slate-400">Context: New identity and structure for a multi product telecom brand.</p>
+          </div>
+        </article>
+
+        <!-- 12 HomeLinked (planning) -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">HomeLinked, USA</h3>
+          <p class="meta text-slate-400">Industry: Telecom Aggregator, United States</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Plan to compete with AT&T and Earthlink.</p>
+            <p><strong>Strategy and Execution:</strong> Brand DNA, wireframes, personas and journeys, competitor gap analysis, keyword strategy, content plans, SEO blueprint.</p>
+            <p><strong>Results:</strong> Planned and handed over, launched after departure.</p>
+            <p><strong>Learning:</strong> Early entity and taxonomy planning de risks large builds.</p>
+            <p class="text-xs text-slate-400">Context: Greenfield brand and product with heavyweight incumbents.</p>
+          </div>
+        </article>
+
+        <!-- 13 STC -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">STC, Stoner Carlson</h3>
+          <p class="meta text-slate-400">Industry: Legal, United States</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Lift legal service visibility.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword and meta updates, internal links, audits, content matrix, GA and GSC tracking.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+10% organic</span>.</p>
+            <p><strong>Learning:</strong> Structured practice area pages drive consistent gains.</p>
+            <p class="text-xs text-slate-400">Context: Practice area focus with highly competitive local intent.</p>
+          </div>
+        </article>
+
+        <!-- 14 SNI portfolio -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">SNI, Sandbox Networks Inc.</h3>
+          <p class="meta text-slate-400">Industry: Education Media, TeacherVision, Teachit, FamilyEducation, InfoPlease</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Stabilise traffic and resolve technical debt across large content estates.</p>
+            <p><strong>Strategy and Execution:</strong> Audits, canonicals, internal links, copy and image updates, redirect fixes, sitemap XML and robots.txt, GA and GTM, Jira workflows, performance baselines.</p>
+            <p><strong>Results:</strong> TeacherVision <span class="text-brand">+8% organic</span>, FamilyEducation <span class="text-brand">+12%</span>, InfoPlease <span class="text-brand">+5%</span> with redirect loops limiting upside, Teachit data unknown.</p>
+            <p><strong>Learning:</strong> Fix redirect chains and stabilise templates before scaling content.</p>
+            <p class="text-xs text-slate-400">Context: Multi brand portfolio with legacy technical constraints.</p>
+          </div>
+        </article>
+
+        <!-- 15 Loan Guru (planning) -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Loan Guru</h3>
+          <p class="meta text-slate-400">Industry: Finance, South Africa</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Launch planning for lead generation finance.</p>
+            <p><strong>Strategy and Execution:</strong> Brand DNA, personas and journey, wireframes, messaging and copy, keyword research, creatives.</p>
+            <p><strong>Results:</strong> Build completed after handover.</p>
+            <p><strong>Learning:</strong> Compliance aware content early prevents rework later.</p>
+            <p class="text-xs text-slate-400">Context: Pre launch groundwork in a regulated category.</p>
+          </div>
+        </article>
+
+        <!-- 16 De Novo -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">De Novo Review</h3>
+          <p class="meta text-slate-400">Industry: Legal, United States</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Grow specialised legal queries and improve discoverability for priority services.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword strategy, on page improvements, internal links, content matrix, technical hygiene, tracking and reporting.</p>
+            <p><strong>Results:</strong> <span class="text-brand">Measured increases and KPIs achieved</span> across priority areas as part of cross functional efforts that included my work and wider team execution.</p>
+            <p><strong>Learning:</strong> Coordinated on site fundamentals with clear content briefs deliver steady gains in legal search.</p>
+            <p class="text-xs text-slate-400">Context: Niche legal services with complex terminology and trust requirements.</p>
+          </div>
+        </article>
+
+        <!-- 17 Foley Mansfield -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Foley Mansfield</h3>
+          <p class="meta text-slate-400">Industry: Legal, United States</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Improve practice area discoverability and organic reach in competitive legal SERPs.</p>
+            <p><strong>Strategy and Execution:</strong> Site hygiene, meta and headers, internal links, attorney profiles and case content, performance tracking.</p>
+            <p><strong>Results:</strong> <span class="text-brand">Measured increases and KPIs achieved</span> as part of cross functional efforts, reflecting my contributions alongside development and content teams.</p>
+            <p><strong>Learning:</strong> Consistent template hygiene and attorney depth pages build durable visibility.</p>
+            <p class="text-xs text-slate-400">Context: Multi office firm with practice area depth and location signals.</p>
+          </div>
+        </article>
+
+        <!-- 18 Lederman Law -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Lederman Law</h3>
+          <p class="meta text-slate-400">Industry: Legal, United States</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Strengthen organic presence for key services and related long tail intent.</p>
+            <p><strong>Strategy and Execution:</strong> Keyword mapping, meta and schema, copy and internal links, technical fixes, analytics and reporting.</p>
+            <p><strong>Results:</strong> <span class="text-brand">Measured increases and KPIs achieved</span> as part of cross functional efforts, not solely attributable to my work.</p>
+            <p><strong>Learning:</strong> Scoped internal linking and targeted schema lift service area discovery.</p>
+            <p class="text-xs text-slate-400">Context: Service led firm with informational depth requirements.</p>
+          </div>
+        </article>
+
+        <!-- Renew -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Renew</h3>
+          <p class="meta text-slate-400">Industry: Consumer</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Revive traffic and social engagement.</p>
+            <p><strong>Strategy and Execution:</strong> Site refresh, social campaigns, content improvements.</p>
+            <p><strong>Results:</strong> Up to <span class="text-brand">+500% traffic increase</span>.</p>
+            <p><strong>Learning:</strong> Fresh UX and consistent social cadence drive sharp rebounds.</p>
+            <p class="text-xs text-slate-400">Context: Brand refresh with social first activation.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social -->
+  <section class="py-10 section-group" data-group="social">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-brand">Social</h2>
+      <h3 class="text-xl md:text-2xl font-bold mt-2">Paid and organic social</h3>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <!-- Silverfin -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Silverfin</h3>
+          <p class="meta text-slate-400">Industry: B2B SaaS, Accounting</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Drive higher quality LinkedIn MQLs and pipeline value.</p>
+            <p><strong>Strategy and Execution:</strong> Multi funnel campaigns, Accelerate and native lead forms, ICP segmentation, document ads, creative and message testing, Salesforce aligned.</p>
+            <p><strong>Results:</strong> about <span class="text-brand">+67% MQL rate year over year</span>, about <span class="text-brand">€125K pipeline</span>, strong ICP match rate. Top performers: Excel Whitepaper, Advisory.</p>
+            <p><strong>Learning:</strong> Quality over volume, tight ICP and document ads improve SQL value.</p>
+            <p class="text-xs text-slate-400">Context: Mid market and enterprise ICPs across UK, Flanders, and NL with long sales cycles.</p>
+          </div>
+        </article>
+
+        <!-- Environ social -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Environ Skin Care</h3>
+          <p class="meta text-slate-400">Industry: Beauty, Wellness, Global</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Scale global reach with educational storytelling.</p>
+            <p><strong>Strategy and Execution:</strong> Market specific content and ad sequencing across Facebook and Instagram, education led creatives, multi region rollout.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+894% Facebook growth</span>, <span class="text-brand">+117% Instagram growth</span>, multi million monthly reach.</p>
+            <p><strong>Learning:</strong> Localised education and consistent cadence compounds growth.</p>
+            <p class="text-xs text-slate-400">Context: Multi market brand education with skincare compliance sensitivities.</p>
+          </div>
+        </article>
+
+        <!-- Bloom -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Bloom Health</h3>
+          <p class="meta text-slate-400">Industry: Health Insurance, Fintech</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Establish brand trust and drive qualified quote requests in a competitive, regulated South African market with limited digital visibility for new entrants.</p>
+            <p><strong>Strategy and Execution:</strong> Integrated social, paid search, and on page optimisation with CRM tracking. Education led messaging on affordability and gap cover benefits, segmented targeting, high engagement creatives, retargeting, and automated lead routing for timely follow ups.</p>
+            <p><strong>Results:</strong>
+              <span class="text-brand">Bronze Assegai Award (Social Media Platforms)</span>,
+              <span class="text-brand">Leader recognition (Search Marketing: SEO and PPC)</span>.
+              Achieved measurable uplift in qualified traffic, engagement, and quote conversions with cost per lead efficiency outperforming typical industry norms.
+            </p>
+            <p><strong>Learning:</strong> Strategic storytelling with data driven optimisation builds brand credibility and conversion performance.</p>
+            <p class="text-xs text-slate-400">Context: New entrant in a compliance heavy health insurance category with budget discipline.</p>
+          </div>
+        </article>
+
+        <!-- Inecto social -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Inecto, Social</h3>
+          <p class="meta text-slate-400">Industry: Beauty, Haircare</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Convert lifestyle interest into measurable engagement.</p>
+            <p><strong>Strategy and Execution:</strong> Monthly content plans, campaign sequencing, competition formats.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+47% social growth</span> attributed alongside SEO lifts.</p>
+            <p><strong>Learning:</strong> Cohesive SEO and Social narrative multiplies impact.</p>
+            <p class="text-xs text-slate-400">Context: Always on social with seasonal campaign peaks.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRO -->
+  <section class="py-10 section-group" data-group="cro">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-brand">CRO</h2>
+      <h3 class="text-xl md:text-2xl font-bold mt-2">Conversion rate optimisation</h3>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <!-- Inecto CRO -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Inecto, CRO</h3>
+          <p class="meta text-slate-400">Industry: Beauty, Haircare</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Lift landing page conversions.</p>
+            <p><strong>Strategy and Execution:</strong> User testing, A/B tests on CTA placement, copy, imagery, variant landing pages, GA, Hotjar, Unbounce framework.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+64% conversion rate</span> in about 5 months.</p>
+            <p><strong>Learning:</strong> Benefit first messaging and simplified hierarchy win consistently.</p>
+            <p class="text-xs text-slate-400">Context: Focus on mobile journeys and competition mechanics.</p>
+          </div>
+        </article>
+
+        <!-- Environ CRO -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Environ Skin Care, CRO</h3>
+          <p class="meta text-slate-400">Industry: Beauty, Wellness</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Improve conversion on campaign landing pages.</p>
+            <p><strong>Strategy and Execution:</strong> Test forms and CTAs, messaging alignment with paid, UX friction fixes.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+8% conversion</span> in about 3 months.</p>
+            <p><strong>Learning:</strong> Message match reduces cognitive load and boosts conversion rate.</p>
+            <p class="text-xs text-slate-400">Context: Multi market campaigns with education heavy creative.</p>
+          </div>
+        </article>
+
+        <!-- Varsity College CRO -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Varsity College, CRO</h3>
+          <p class="meta text-slate-400">Industry: Education</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Increase course enquiry submissions.</p>
+            <p><strong>Strategy and Execution:</strong> Form layout simplification, banner and message tests, UX improvements.</p>
+            <p><strong>Results:</strong> <span class="text-brand">+32% conversion uplift</span> in about 3 to 5 months.</p>
+            <p><strong>Learning:</strong> Progressive disclosure in forms lifts completion.</p>
+            <p class="text-xs text-slate-400">Context: Lead generation with seasonality and multi campus routing.</p>
+          </div>
+        </article>
+
+        <!-- Best Internet CRO -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Best Internet, CRO</h3>
+          <p class="meta text-slate-400">Industry: Telecom</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Improve landing page conversions during rebrand.</p>
+            <p><strong>Strategy and Execution:</strong> A/B testing of copy, CTAs, imagery, form optimisation, UX tweaks.</p>
+            <p><strong>Results:</strong> Data not available post launch.</p>
+            <p><strong>Learning:</strong> Lock in CRO baselines before rebrand rollouts.</p>
+            <p class="text-xs text-slate-400">Context: Rebrand window with concurrent SEO and paid changes.</p>
+          </div>
+        </article>
+
+        <!-- Luxury Travel (Confidential) -->
+        <article class="card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold">Luxury Travel Brand, Confidential</h3>
+          <p class="meta text-slate-400">Industry: Luxury Travel</p>
+          <div class="mt-3 space-y-3 text-sm text-slate-300">
+            <p><strong>Challenge:</strong> Increase trip request form submissions.</p>
+            <p><strong>Strategy and Execution:</strong> A/B tested landing experiences, form field reduction and sequencing, analytics instrumentation.</p>
+            <p><strong>Results:</strong> Statistically significant uplift in qualified submissions, NDA.</p>
+            <p><strong>Learning:</strong> Variant level tracking clarifies match rate and downstream pipeline.</p>
+            <p class="text-xs text-slate-400">Context: Long consideration journeys and high value enquiries.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop"
+    class="hidden fixed bottom-8 right-8 bg-brand text-slate-900 font-semibold px-4 py-3 rounded-full shadow-soft hover:bg-brand-dark transition duration-300">
+    ↑ Back to Top
+  </button>
+
+  <!-- Closing Section -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <div class="card rounded-2xl p-8 bg-slate-800 border border-slate-700 shadow-soft">
+        <p class="text-slate-300 text-base md:text-lg leading-relaxed">
+          Each project reflects a <span class="text-brand font-semibold">data-led approach</span>, balancing creativity, analytics, and execution.
+          Where constraints existed, they informed better frameworks and sharper hypotheses for the next round.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Work With Me -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="card rounded-2xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h5 class="text-lg font-semibold text-[#0EA5E9]">How to Work With Me</h5>
+          <p class="text-slate-400 mt-1 text-sm">Partnering with brands and professionals across the globe.</p>
+        </div>
+        <a href="contact.html" class="px-5 py-3 rounded bg-brand text-slate-900 font-medium hover:bg-brand-dark transition">
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-6 border-t border-slate-700 text-center text-slate-400 text-sm">
+    © <span id="year"></span> Lucy Aingworth. All rights reserved.
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Compute sticky top for tabs = header height
+    const headerEl = document.querySelector('header');
+    const tabsEl = document.querySelector('.tabs-sticky');
+    function setStickyTop(){
+      const h = (headerEl?.offsetHeight || 72);
+      tabsEl?.style.setProperty('--stickyTop', (h) + 'px');
+    }
+    window.addEventListener('load', setStickyTop);
+    window.addEventListener('resize', setStickyTop);
+
+    // Tabs logic
+    const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+    const sections = Array.from(document.querySelectorAll('.section-group'));
+
+    function setActiveTab(target){
+      const show = target.dataset.show;
+      tabs.forEach(t => t.setAttribute('aria-selected', t === target ? 'true' : 'false'));
+
+      if (show === 'all') {
+        sections.forEach(s => s.classList.remove('hidden'));
+      } else {
+        sections.forEach(s => s.classList.toggle('hidden', s.dataset.group !== show));
+      }
+
+      // Offset-aware scroll to the top of the first visible section
+      const headerH = headerEl?.offsetHeight || 0;
+      const tabsH = tabsEl?.offsetHeight || 0;
+      const offset = headerH + tabsH + 8;
+
+      const firstVisible = show === 'all'
+        ? sections[0]
+        : document.querySelector(`.section-group[data-group="${show}"]`);
+
+      if (firstVisible) {
+        const y = firstVisible.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+
+      // Update URL hash (shareable)
+      if (show === 'all') history.replaceState(null, '', location.pathname);
+      else history.replaceState(null, '', `#${show}`);
+    }
+
+    tabs.forEach(btn => btn.addEventListener('click', () => setActiveTab(btn)));
+
+    // Load state from hash (#seo/#social/#cro)
+    function initFromHash(){
+      const hash = location.hash.replace('#','');
+      const initial = tabs.find(t => t.dataset.show === hash) || tabs[0];
+      setActiveTab(initial);
+    }
+    window.addEventListener('load', initFromHash);
+
+    // Back to Top
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400) backToTop.classList.remove("hidden");
+      else backToTop.classList.add("hidden");
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
